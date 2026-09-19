@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gryczarka</title>
+  <style>
+    :root {
+      --green: #8fd14f;
+      --yellow: #f4df55;
+      --blue: #4da9e8;
+      --blue-dark: #2586ca;
+      --text: #21452a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #e7f6a8 0%, #f8f4a9 48%, #c9edcf 100%);
+    }
+
+    .topbar {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 16px 24px;
+      background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 48%, var(--blue) 100%);
+      box-shadow: 0 4px 14px rgba(35, 85, 45, 0.18);
+    }
+
+    .brand {
+      margin: 0;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .optional {
+      margin-left: auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 17px;
+      font: inherit;
+      font-weight: 700;
+      color: #244d2c;
+      background: rgba(255, 255, 255, 0.72);
+      cursor: pointer;
+    }
+
+    .content {
+      min-height: calc(100vh - 82px);
+      display: grid;
+      place-items: center;
+      padding: 42px 24px;
+    }
+
+    .fish-button {
+      border: 0;
+      border-radius: 18px;
+      padding: 18px 30px;
+      font: inherit;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: white;
+      background: var(--blue-dark);
+      box-shadow: 0 8px 18px rgba(37, 134, 202, 0.28);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .fish-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(37, 134, 202, 0.34);
+    }
+
+    .fish-button:active { transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="brand">gryczarka</h1>
+    <button class="optional" type="button">opcjonalnie</button>
+  </header>
+
+  <main class="content">
+    <button class="fish-button" type="button">gra w rybę</button>
+  </main>
+</body>
+</html>
