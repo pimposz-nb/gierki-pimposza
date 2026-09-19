@@ -1,94 +1,56 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gry Czarka</title>
-  <style>
-    :root {
-      --green: #8fd14f;
-      --yellow: #f4df55;
-      --blue: #4da9e8;
-      --blue-dark: #2586ca;
-      --text: #21452a;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background: linear-gradient(135deg, #e7f6a8 0%, #f8f4a9 48%, #c9edcf 100%);
-    }
-
-    .topbar {
-      min-height: 82px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      padding: 16px 24px;
-      background: linear-gradient(90deg, var(--green) 0%, var(--yellow) 48%, var(--blue) 100%);
-      box-shadow: 0 4px 14px rgba(35, 85, 45, 0.18);
-    }
-
-    .brand {
-      margin: 0;
-      font-size: clamp(1.55rem, 4vw, 2.15rem);
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .optional {
-      margin-left: auto;
-      border: 0;
-      border-radius: 999px;
-      padding: 10px 17px;
-      font: inherit;
-      font-weight: 700;
-      color: #244d2c;
-      background: rgba(255, 255, 255, 0.72);
-      cursor: pointer;
-    }
-
-    .content {
-      min-height: calc(100vh - 82px);
-      display: grid;
-      place-items: center;
-      padding: 42px 24px;
-    }
-
-    .fish-button {
-      border: 0;
-      border-radius: 18px;
-      padding: 18px 30px;
-      font: inherit;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: white;
-      background: var(--blue-dark);
-      box-shadow: 0 8px 18px rgba(37, 134, 202, 0.28);
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .fish-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(37, 134, 202, 0.34);
-    }
-
-    .fish-button:active { transform: translateY(0); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gry Czarka</title>
+<style>
+:root{--green:#8fd14f;--yellow:#f4df55;--blue:#4da9e8;--blue-dark:#2586ca;--text:#21452a}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+body{min-height:100vh;background:linear-gradient(135deg,#e7f6a8,#f8f4a9 48%,#c9edcf);overflow:hidden}
+body.flash-gray{animation:grayFlash .45s ease}@keyframes grayFlash{50%{background:#aaa}}
+body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{background:#49aee8}}
+.topbar{min-height:82px;display:flex;align-items:center;gap:18px;padding:16px 24px;background:linear-gradient(90deg,var(--green),var(--yellow) 48%,var(--blue));box-shadow:0 4px 14px rgba(35,85,45,.18)}
+.brand{margin:0;font-size:clamp(1.55rem,4vw,2.15rem);font-weight:800}.optional,.exit{margin-left:auto;border:0;border-radius:999px;padding:10px 17px;font:inherit;font-weight:700;color:#244d2c;background:rgba(255,255,255,.72);cursor:pointer}
+.content{min-height:calc(100vh - 82px);display:grid;place-items:center;padding:42px 24px}.fish-button{border:0;border-radius:18px;padding:18px 30px;font:inherit;font-size:1.25rem;font-weight:800;color:white;background:var(--blue-dark);box-shadow:0 8px 18px rgba(37,134,202,.28);cursor:pointer}.fish-button:hover{transform:translateY(-2px)}
+.overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(80,80,80,.35);z-index:10}.overlay.show{display:grid}.panel{width:min(90vw,430px);padding:28px;border-radius:24px;background:#f2f2f2;box-shadow:0 15px 45px rgba(0,0,0,.3);text-align:center}.panel h2{margin-top:0}.sound-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0}.toggle{padding:10px 18px;border:0;border-radius:999px;background:#72c77a;color:white;font-weight:800;cursor:pointer}.exit{margin:14px 0 0;background:#ddd;color:#333}.game{display:none;position:fixed;inset:0;background:linear-gradient(#8bdcff,#2699d7);z-index:5}.game.show{display:block}.waves{position:absolute;inset:auto 0 0;height:34%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 12px,transparent 12px 28px);opacity:.8}.player,.shark{position:absolute;font-size:clamp(45px,9vw,78px);user-select:none;touch-action:none}.player{left:15%;top:45%}.shark{font-size:clamp(48px,10vw,82px)}.hud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;z-index:2}.hud button{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.choice{display:none;position:fixed;inset:0;z-index:8;background:rgba(20,100,150,.9);color:white;place-items:center}.choice.show{display:grid}.choices{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}.fish-choice{font-size:60px;border:0;border-radius:18px;background:white;padding:14px;cursor:pointer}.gameover{display:none;position:absolute;inset:0;z-index:4;place-items:center;background:rgba(0,40,70,.72);color:white;text-align:center}.gameover.show{display:grid}.gameover button{border:0;border-radius:12px;padding:12px 18px;margin:5px;font-weight:800;cursor:pointer}.mobile-help{font-size:.9rem;opacity:.9}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <h1 class="brand">gry czarka</h1>
-    <button class="optional" type="button">opcje</button>
-  </header>
+<header class="topbar"><h1 class="brand">gry czarka</h1><button class="optional" id="optionsBtn">opcje</button></header>
+<main class="content"><button class="fish-button" id="fishBtn">🐟 gra w rybę</button></main>
 
-  <main class="content">
-    <button class="fish-button" type="button">gra w rybę</button>
-  </main>
+<section class="overlay" id="options">
+ <div class="panel"><h2>opcje</h2><div class="sound-row"><span>🔊 dźwięk</span><button class="toggle" id="soundBtn">włączony</button></div><button class="exit" id="optionsExit">wyjdź</button></div>
+</section>
+
+<section class="choice" id="choice"><div><h2>Wybierz rybę 🐟</h2><div class="choices"><button class="fish-choice" data-fish="🐟">🐟</button><button class="fish-choice" data-fish="🐠">🐠</button><button class="fish-choice" data-fish="🐡">🐡</button><button class="fish-choice" data-fish="🦈">🐬</button></div></div></section>
+
+<section class="game" id="game">
+ <div class="hud"><span>🐟 Steruj rybą</span><button id="gameExit">wyjdź</button></div>
+ <div class="player" id="player">🐟</div><div class="shark" id="shark1">🦈</div><div class="shark" id="shark2">🦈</div><div class="waves"></div>
+ <div class="gameover" id="gameover"><div><h2>💥 GAME OVER</h2><p>Rekin cię dopadł!</p><button id="resume">wznów</button><button id="gameoverExit">wyjdź</button></div></div>
+</section>
+
+<script>
+const options=document.getElementById('options'), choice=document.getElementById('choice'), game=document.getElementById('game'), player=document.getElementById('player'), sharks=[document.getElementById('shark1'),document.getElementById('shark2')], gameover=document.getElementById('gameover');
+let sound=true,x=.15,y=.45,fish='🐟',running=false,raf,last=0;
+function flash(cls){document.body.classList.remove(cls);void document.body.offsetWidth;document.body.classList.add(cls)}
+document.getElementById('optionsBtn').onclick=()=>{flash('grayFlash');options.classList.add('show')};
+document.getElementById('optionsExit').onclick=()=>options.classList.remove('show');
+document.getElementById('soundBtn').onclick=e=>{sound=!sound;e.target.textContent=sound?'włączony':'wyłączony'};
+document.getElementById('fishBtn').onclick=()=>choice.classList.add('show');
+document.querySelectorAll('.fish-choice').forEach(b=>b.onclick=()=>{fish=b.dataset.fish;player.textContent=fish;choice.classList.remove('show');startGame()});
+function startGame(){flash('blueFlash');game.classList.add('show');gameover.classList.remove('show');x=.15;y=.45;running=true;last=performance.now();sharks.forEach((s,i)=>{s.style.left=(65+i*20)+'%';s.style.top=(20+i*45)+'%'});cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function endGame(){running=false;gameover.classList.add('show')}
+function loop(t){if(!running)return;let dt=(t-last)/1000;last=t;sharks.forEach((s,i)=>{let p=parseFloat(s.style.left)||70;let speed=(i?10:14)*dt;p-=speed;if(p<-12)p=105;s.style.left=p+'%';let sy=parseFloat(s.style.top)||30;let dx=p/100-x,dy=sy/100-y;if(Math.hypot(dx,dy)<.09)endGame()});player.style.left=(x*100)+'%';player.style.top=(y*100)+'%';raf=requestAnimationFrame(loop)}
+const keys={};addEventListener('keydown',e=>{keys[e.key]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault()});addEventListener('keyup',e=>keys[e.key]=false);
+setInterval(()=>{if(!running)return;const step=.035;if(keys.ArrowUp)y-=step;if(keys.ArrowDown)y+=step;if(keys.ArrowLeft)x-=step;if(keys.ArrowRight)x+=step;x=Math.max(.02,Math.min(.94,x));y=Math.max(.12,Math.min(.88,y))},30);
+game.addEventListener('pointerdown',e=>{if(!running)return;moveTo(e.clientX,e.clientY)});game.addEventListener('pointermove',e=>{if(e.buttons&&running)moveTo(e.clientX,e.clientY)});
+function moveTo(px,py){x=Math.max(.02,Math.min(.94,px/innerWidth));y=Math.max(.12,Math.min(.88,py/innerHeight))}
+document.getElementById('gameExit').onclick=()=>{running=false;game.classList.remove('show');gameover.classList.remove('show')};
+document.getElementById('gameoverExit').onclick=()=>{game.classList.remove('show');gameover.classList.remove('show')};
+document.getElementById('resume').onclick=()=>startGame();
+</script>
 </body>
 </html>
