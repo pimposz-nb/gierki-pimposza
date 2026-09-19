@@ -117,3 +117,15 @@ Jeżeli użyty materiał wymaga atrybucji, zapisujemy autora, źródło i licenc
 - **Nieznana licencja** — nie używamy, dopóki nie uda się ustalić praw do wykorzystania.
 
 > Ta lista jest pomocą przy wyborze materiałów, a nie poradą prawną. Przed użyciem konkretnego pliku sprawdzamy jego aktualną licencję na stronie źródłowej.
+
+
+## Dźwięki użyte w grze
+
+- 🌊 **Skippy Fish Water Sound Collection** — CC0: woda, pływanie i bąbelki. https://opengameart.org/content/skippy-fish-water-sound-collection
+- 📝 **Various Paper Sound Effects** — CC0: papier. https://opengameart.org/content/various-paper-sound-effects
+- 💦 **Fisheefects** — zawiera efekty ryb, plusków i rekinów; strona deklaruje możliwość użycia bez atrybucji. https://opengameart.org/content/fisheefects
+- 🪨 **Saw or Wood Impact** — CC0; używany jako krótki efekt kamiennego stuknięcia, bo brzmi jak twarde uderzenie. https://opengameart.org/content/saw-or-wood-impact
+- 🐦 **Ambient Bird Sounds** — CC0; używany jako naturalny ptasi efekt dla dźwięku przypominającego „dili arivi”. https://opengameart.org/content/ambient-bird-sounds
+- 🐬 **Dolphin.wav — Forpus_Prod** — CC0; znaleziony na Freesound. Nagranie jest jednak ludzką imitacją delfina, więc w grze stosujemy obecnie stylizowany efekt delfina zamiast przedstawiać go jako prawdziwe nagranie zwierzęcia. https://freesound.org/people/Forpus_Prod/sounds/391317/
+- 🦈 **Weird Shark Noise** — CC0; znaleziony na Freesound jako stylizowany efekt rekina. https://freesound.org/people/Shaddius/sounds/450619/
+- 🚽 **Toilet Flush** — CC0; znaleziony na Freesound i zapisany jako źródło pomysłu na efekt muszli. https://freesound.org/people/Breviceps/sounds/449954/
