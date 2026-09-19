@@ -49,14 +49,21 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 const options=document.getElementById('options'),choice=document.getElementById('choice'),game=document.getElementById('game'),player=document.getElementById('player'),sharks=[document.getElementById('shark1'),document.getElementById('shark2')],gameover=document.getElementById('gameover');
 const adgame=document.getElementById('adgame'),stack=document.getElementById('stack'),heightLabel=document.getElementById('height');
 let sound=true,x=.15,y=.45,fish='🐟',running=false,raf,last=0;
-function flash(cls){document.body.classList.remove(cls);void document.body.offsetWidth;document.body.classList.add(cls)}
+function flash(cls){document.body.classList.remove(cls);void document.body.offsetWidth;document.body.classList.add(cls)}function audioContext(){if(!sound)return null;try{mcmAudio=mcmAudio||new (window.AudioContext||window.webkitAudioContext)();if(mcmAudio.state==='suspended')mcmAudio.resume();return mcmAudio}catch(e){return null}}
+function noiseBurst(duration=.08,volume=.08,filterType='lowpass',freq=1200){const a=audioContext();if(!a)return;const n=a.createBufferSource(),b=a.createBuffer(1,a.sampleRate*duration,a.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);const f=a.createBiquadFilter();f.type=filterType;f.frequency.value=freq;const g=a.createGain();g.gain.setValueAtTime(volume,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);n.buffer=b;n.connect(f);f.connect(g);g.connect(a.destination);n.start();n.stop(a.currentTime+duration)}
+function woodKnock(){const a=audioContext();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.setValueAtTime(145,a.currentTime);o.frequency.exponentialRampToValueAtTime(75,a.currentTime+.09);g.gain.setValueAtTime(.16,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.11);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.11);noiseBurst(.035,.045,'bandpass',900)}
+function waterSwish(){noiseBurst(.42,.035,'lowpass',700);const a=audioContext();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type='sine';o.frequency.setValueAtTime(180,a.currentTime);o.frequency.linearRampToValueAtTime(115,a.currentTime+.42);g.gain.setValueAtTime(.035,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.42);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.42)}
+function fishBubble(){noiseBurst(.045,.035,'highpass',1500);setTimeout(()=>noiseBurst(.055,.025,'highpass',1900),45)}
+function scissorsSound(){const a=audioContext();if(!a)return;[0,.12].forEach((t,i)=>{setTimeout(()=>noiseBurst(.055,.055,'bandpass',2400+i*500),t*1000)});const o=a.createOscillator(),g=a.createGain();o.type='sawtooth';o.frequency.value=1800;g.gain.setValueAtTime(.025,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+.12);o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+.12)}
+function softThud(){noiseBurst(.09,.07,'lowpass',500)}
+
 document.getElementById('optionsBtn').onclick=()=>{flash('grayFlash');options.classList.add('show')};
 document.getElementById('optionsExit').onclick=()=>options.classList.remove('show');
 document.getElementById('soundBtn').onclick=e=>{sound=!sound;e.target.textContent=sound?'włączony':'wyłączony'};
-document.getElementById('fishBtn').onclick=()=>choice.classList.add('show');
-document.querySelectorAll('.fish-choice').forEach(b=>b.onclick=()=>{fish=b.dataset.fish;player.textContent=fish;choice.classList.remove('show');startGame()});
-function startGame(){flash('blueFlash');game.classList.add('show');gameover.classList.remove('show');x=.15;y=.45;running=true;last=performance.now();sharks.forEach((s,i)=>{s.style.left=(65+i*20)+'%';s.style.top=(20+i*45)+'%'});cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
-function endGame(){running=false;gameover.classList.add('show')}
+document.getElementById('fishBtn').onclick=()=>{waterSwish();choice.classList.add('show')};
+document.querySelectorAll('.fish-choice').forEach(b=>b.onclick=()=>{fish=b.dataset.fish;player.textContent=fish;choice.classList.remove('show');fishBubble();startGame()});
+function startGame(){flash('blueFlash');waterSwish();game.classList.add('show');gameover.classList.remove('show');x=.15;y=.45;running=true;last=performance.now();sharks.forEach((s,i)=>{s.style.left=(65+i*20)+'%';s.style.top=(20+i*45)+'%'});cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
+function endGame(){running=false;softThud();gameover.classList.add('show')}
 function loop(t){if(!running)return;let dt=(t-last)/1000;last=t;sharks.forEach((s,i)=>{let p=parseFloat(s.style.left)||70;p-=(i?10:14)*dt;if(p<-12)p=105;s.style.left=p+'%';let sy=parseFloat(s.style.top)||30;if(Math.hypot(p/100-x,sy/100-y)<.09)endGame()});player.style.left=x*100+'%';player.style.top=y*100+'%';raf=requestAnimationFrame(loop)}
 const keys={};addEventListener('keydown',e=>{keys[e.key]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault()});addEventListener('keyup',e=>keys[e.key]=false);
 setInterval(()=>{if(!running)return;const step=.035;if(keys.ArrowUp)y-=step;if(keys.ArrowDown)y+=step;if(keys.ArrowLeft)x-=step;if(keys.ArrowRight)x+=step;x=Math.max(.02,Math.min(.94,x));y=Math.max(.12,Math.min(.88,y))},30);
@@ -70,7 +77,7 @@ let blocks=[];
 function openAdblock(){adgame.classList.add('show');if(!blocks.length)addBlock(1)}
 document.getElementById('adBtn').onclick=openAdblock;
 document.getElementById('adExit').onclick=()=>adgame.classList.remove('show');
-document.getElementById('buildBtn').onclick=()=>addBlock(1);
+document.getElementById('buildBtn').onclick=()=>{woodKnock();addBlock(1)};
 function addBlock(value){
  const b=document.createElement('div');b.className='block '+blockClass(value);b.dataset.value=value;b.innerHTML=blockFace(value)+(value===8?'<span class="arms">'+Array.from({length:8},()=>'<i></i>').join('')+'</span>':'');b.title='klocek '+value;
  b.onclick=e=>{e.stopPropagation();mergeBlock(b)};stack.appendChild(b);blocks.push(b);refreshAdblock();
@@ -82,7 +89,7 @@ function mergeBlock(b){
  const siblings=[...stack.children].filter(x=>Number(x.dataset.value)===value);
  if(siblings.length<2){return}
  const a=siblings[0],c=siblings[1];a.remove();c.remove();blocks=blocks.filter(x=>x!==a&&x!==c);
- addBlock(value*2);
+ woodKnock();softThud();addBlock(value*2);
  refreshAdblock();
 }
 
@@ -95,7 +102,7 @@ document.getElementById('chooseX').onclick=()=>{tttHuman='X';tttReset()};
 document.getElementById('chooseO').onclick=()=>{tttHuman='O';tttReset()};
 document.getElementById('tttReset').onclick=tttReset;
 function tttReset(){tttCells=Array(9).fill('');tttTurn='X';tttOver=false;tttBoard.innerHTML='';for(let i=0;i<9;i++){const b=document.createElement('button');b.className='ttt-cell';b.onclick=()=>tttMove(i);tttBoard.appendChild(b)}tttStatus.textContent=tttHuman===null?'Najpierw wybierz ❌ albo 🔵':tttHuman==='X'?'Twój ruch — ❌':'Komputer zaczyna — 🔵';if(tttHuman==='O')setTimeout(tttComputer,250)}
-function tttMove(i){if(tttHuman===null||tttOver||tttCells[i]||tttTurn!==tttHuman)return;tttCells[i]=tttHuman;tttRender();if(tttFinish())return;tttTurn=tttHuman==='X'?'O':'X';setTimeout(tttComputer,220)}
+function tttMove(i){if(tttHuman===null||tttOver||tttCells[i]||tttTurn!==tttHuman)return;scissorsSound();tttCells[i]=tttHuman;tttRender();if(tttFinish())return;tttTurn=tttHuman==='X'?'O':'X';setTimeout(tttComputer,220)}
 function tttComputer(){if(tttOver)return;const ai=tttHuman==='X'?'O':'X';const free=tttCells.map((v,i)=>v?null:i).filter(i=>i!==null);if(!free.length)return;const winMove=tttFindMove(ai);const blockMove=tttFindMove(tttHuman);const pick=winMove??blockMove??free[0];tttCells[pick]=ai;tttRender();if(tttFinish())return;tttTurn=tttHuman;tttStatus.textContent='Twój ruch — '+(tttHuman==='X'?'❌':'🔵')}
 function tttFindMove(mark){for(const i of tttCells.map((v,i)=>v?null:i).filter(i=>i!==null)){tttCells[i]=mark;if(tttWinner(mark)){tttCells[i]='';return i}tttCells[i]=''}return null}
 function tttWinner(m){return [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]].some(a=>a.every(i=>tttCells[i]===m))}
@@ -119,15 +126,15 @@ document.getElementById('mcmShop').onclick=()=>document.getElementById('mcmShopP
 document.getElementById('mcmShopClose').onclick=()=>document.getElementById('mcmShopPanel').classList.remove('show');
 let mcmDiamonds=3000,mcmMineCount=0,mcmAudio=null,mcmBeatTimer=null;
 function mcmTone(freq,duration=0.12,type='sine',volume=.08){if(!sound)return;try{mcmAudio=mcmAudio||new (window.AudioContext||window.webkitAudioContext)();const o=mcmAudio.createOscillator(),g=mcmAudio.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(volume,mcmAudio.currentTime);g.gain.exponentialRampToValueAtTime(.001,mcmAudio.currentTime+duration);o.connect(g);g.connect(mcmAudio.destination);o.start();o.stop(mcmAudio.currentTime+duration)}catch(e){}}
-function mcmCreatureSong(){[392,440,523,440].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'triangle',.1),i*220))}
-function mcmRockBeat(){mcmTone(120,.09,'square',.09);setTimeout(()=>mcmTone(120,.09,'square',.09),140);setTimeout(()=>mcmTone(160,.13,'square',.09),280)}function mcmJellySong(){[330,392,494,392,330].forEach((f,i)=>setTimeout(()=>mcmTone(f,.28,'sine',.08),i*190));[220,260,300].forEach((f,i)=>setTimeout(()=>mcmTone(f,.12,'sine',.05),i*120));}
+function mcmCreatureSong(){[392,440,523,440].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'triangle',.1),i*220));noiseBurst(.06,.025,'lowpass',1100)}
+function mcmRockBeat(){mcmTone(95,.12,'triangle',.1);noiseBurst(.055,.045,'lowpass',260);setTimeout(()=>mcmTone(105,.11,'triangle',.09),140);setTimeout(()=>softThud(),280)}function mcmJellySong(){waterSwish();[330,392,494,392,330].forEach((f,i)=>setTimeout(()=>mcmTone(f,.28,'sine',.08),i*190));[220,260,300].forEach((f,i)=>setTimeout(()=>mcmTone(f,.12,'sine',.05),i*120));}
 document.getElementById('mcmMonsterBuy').onclick=()=>{document.getElementById('mcmShopPanel').classList.remove('show');mcmgame.classList.add('monster1');document.getElementById('mcmTutorialText').innerHTML='<b>Brawo.</b> Teraz możesz sobie kupić kopalnię diamentów za sto diamentów.';document.getElementById('mcmMineBuyBox').style.display='block';mcmCreatureSong()};
 document.getElementById('mcmBuyMine').onclick=()=>{if(mcmMineCount||mcmDiamonds<100)return;mcmDiamonds-=100;mcmMineCount=1;document.getElementById('mcmDiamonds').textContent=mcmDiamonds;document.getElementById('mcmMineCount').textContent=mcmMineCount;document.getElementById('mcmMineBuyBox').style.display='none';document.getElementById('mcmTutorialText').innerHTML='<b>Brawo.</b> Teraz kliknij SKLEP i zdobądź skalnego rytmika.';setInterval(()=>{if(mcmMineCount){mcmDiamonds++;document.getElementById('mcmDiamonds').textContent=mcmDiamonds}},1000);};document.getElementById('mcmRockBuy').onclick=()=>{document.getElementById('mcmShopPanel').classList.remove('show');mcmgame.classList.add('monster2');document.getElementById('mcmTutorialText').innerHTML='<b>Brawo!</b> Potwory mogą razem grać: biały śpiewa, a skalny nadaje rytm. 🥁🎵';if(mcmBeatTimer)clearInterval(mcmBeatTimer);mcmBeatTimer=setInterval(mcmRockBeat,600);mcmRockBeat();mcmCreatureSong();};document.getElementById('mcmJellyBuy').onclick=()=>{document.getElementById('mcmShopPanel').classList.remove('show');mcmgame.classList.add('monster3');document.getElementById('mcmTutorialText').innerHTML='<b>Brawo!</b> Niebieska galaretka dołącza do zespołu i dodaje wodny śpiew. 💧🎵';mcmJellySong();setTimeout(()=>{document.getElementById('mcmTutorialText').innerHTML='<b>Papa, odejdę. 👋</b>';setTimeout(()=>{document.querySelector('.mcm-tutorial').style.display='none';},450);},1800);};
 document.getElementById('mcmShopClose').onclick=()=>document.getElementById('mcmShopPanel').classList.remove('show');
 document.getElementById('mcmShop').onclick=()=>document.getElementById('mcmShopPanel').classList.add('show');
-document.getElementById('mcmFrogFuse').onclick=()=>{mcmgame.classList.remove('monster2','monster3');mcmgame.classList.add('fusionfrog');document.getElementById('mcmShopPanel').classList.remove('show');mcmTone(330,.3,'triangle',.1);[392,440,523,440,392].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'sine',.08),i*180));};
-document.getElementById('mcmBallFuse').onclick=()=>{mcmgame.classList.remove('monster1','monster2');mcmgame.classList.add('fusionball');document.getElementById('mcmShopPanel').classList.remove('show');[262,330,392,330,262,330].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'triangle',.08),i*180));};
-document.getElementById('mcmMachine').onclick=()=>{};
+document.getElementById('mcmFrogFuse').onclick=()=>{mcmgame.classList.remove('monster2','monster3');mcmgame.classList.add('fusionfrog');document.getElementById('mcmShopPanel').classList.remove('show');noiseBurst(.08,.04,'lowpass',500);mcmTone(330,.3,'triangle',.1);[392,440,523,440,392].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'sine',.08),i*180));};
+document.getElementById('mcmBallFuse').onclick=()=>{mcmgame.classList.remove('monster1','monster2');mcmgame.classList.add('fusionball');document.getElementById('mcmShopPanel').classList.remove('show');noiseBurst(.045,.035,'bandpass',900);[262,330,392,330,262,330].forEach((f,i)=>setTimeout(()=>mcmTone(f,.22,'triangle',.08),i*180));};
+
 </script>
 </body>
 </html>
