@@ -212,6 +212,32 @@ document.getElementById('randomBtn').onclick=()=>{randomgame.classList.add('show
 document.getElementById('randomNext').onclick=randomPick;
 document.getElementById('randomExit').onclick=()=>randomgame.classList.remove('show');
 
+
+// Wspólna nawigacja: każdy przycisk „wyjdź” wraca do głównego menu.
+function goMainMenu(){
+  running=false;
+  if(typeof raf!=='undefined') cancelAnimationFrame(raf);
+  if(typeof stopFishSounds==='function') stopFishSounds();
+  document.querySelectorAll('section.choice,section.game,section.tttgame,section.mcmgame,section.adgame,section.randomgame,section.overlay').forEach(el=>el.classList.remove('show'));
+  document.body.classList.remove('in-game');
+  if(typeof resetMcmTutorial==='function') resetMcmTutorial();
+}
+document.getElementById('gameExit')?.addEventListener('click',goMainMenu);
+document.getElementById('gameoverExit')?.addEventListener('click',goMainMenu);
+document.getElementById('adExit')?.addEventListener('click',goMainMenu);
+document.getElementById('tttExit')?.addEventListener('click',goMainMenu);
+document.getElementById('randomExit')?.addEventListener('click',goMainMenu);
+document.getElementById('optionsExit')?.addEventListener('click',goMainMenu);
+
+// Opcje dźwięku naprawdę włączają/wyłączają dźwięki.
+const originalSoundBtn=document.getElementById('soundBtn');
+if(originalSoundBtn){
+  originalSoundBtn.onclick=()=>{
+    sound=!sound;
+    originalSoundBtn.textContent=sound?'włączony':'wyłączony';
+    if(!sound && typeof stopFishSounds==='function') stopFishSounds();
+  };
+}
 </script>
 </body>
 </html>
