@@ -15,10 +15,17 @@ To repozytorium zawiera projekty i gry rozwijane w ramach **Gierki Pimposza**.
 
 ## Git
 
+- Zawsze pracujemy bezpośrednio na gałęzi `main`.
 - Commit powinien opisywać jedną logiczną zmianę.
 - Używaj krótkich, rzeczowych komunikatów commitów.
 - Nie dodawaj do commita sekretów, kluczy API, haseł ani plików tymczasowych.
 - Przed zakończeniem zadania sprawdź diff i upewnij się, że zmienione zostały tylko zamierzone pliki.
+
+## Publikacja
+
+- Stronę publikujemy na **GitHub Pages**.
+- Deployment na GitHub Pages wykonujemy przez **GitHub Actions**.
+- Zmiany przeznaczone do publikacji trafiają na `main`, a GitHub Actions odpowiada za ich zbudowanie i wdrożenie na GitHub Pages.
 
 ## Dokumentacja
 
