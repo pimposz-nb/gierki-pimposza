@@ -12,28 +12,36 @@ body.flash-gray{animation:grayFlash .45s ease}@keyframes grayFlash{50%{backgroun
 body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{background:#49aee8}}
 .topbar{min-height:82px;display:flex;align-items:center;gap:18px;padding:16px 24px;background:linear-gradient(90deg,var(--green),var(--yellow) 48%,var(--blue));box-shadow:0 4px 14px rgba(35,85,45,.18)}
 .brand{margin:0;font-size:clamp(1.55rem,4vw,2.15rem);font-weight:800}.optional,.exit{margin-left:auto;border:0;border-radius:999px;padding:10px 17px;font:inherit;font-weight:700;color:#244d2c;background:rgba(255,255,255,.72);cursor:pointer}
-.content{min-height:calc(100vh - 82px);display:grid;place-items:center;padding:42px 24px}.fish-button{border:0;border-radius:18px;padding:18px 30px;font:inherit;font-size:1.25rem;font-weight:800;color:white;background:var(--blue-dark);box-shadow:0 8px 18px rgba(37,134,202,.28);cursor:pointer}.fish-button:hover{transform:translateY(-2px)}
-.overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(80,80,80,.35);z-index:10}.overlay.show{display:grid}.panel{width:min(90vw,430px);padding:28px;border-radius:24px;background:#f2f2f2;box-shadow:0 15px 45px rgba(0,0,0,.3);text-align:center}.panel h2{margin-top:0}.sound-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0}.toggle{padding:10px 18px;border:0;border-radius:999px;background:#72c77a;color:white;font-weight:800;cursor:pointer}.exit{margin:14px 0 0;background:#ddd;color:#333}.game{display:none;position:fixed;inset:0;background:linear-gradient(#8bdcff,#2699d7);z-index:5}.game.show{display:block}.waves{position:absolute;inset:auto 0 0;height:34%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 12px,transparent 12px 28px);opacity:.8}.player,.shark{position:absolute;font-size:clamp(45px,9vw,78px);user-select:none;touch-action:none}.player{left:15%;top:45%}.shark{font-size:clamp(48px,10vw,82px)}.hud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;z-index:2}.hud button{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.choice{display:none;position:fixed;inset:0;z-index:8;background:rgba(20,100,150,.9);color:white;place-items:center}.choice.show{display:grid}.choices{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}.fish-choice{font-size:60px;border:0;border-radius:18px;background:white;padding:14px;cursor:pointer}.gameover{display:none;position:absolute;inset:0;z-index:4;place-items:center;background:rgba(0,40,70,.72);color:white;text-align:center}.gameover.show{display:grid}.gameover button{border:0;border-radius:12px;padding:12px 18px;margin:5px;font-weight:800;cursor:pointer}.mobile-help{font-size:.9rem;opacity:.9}
+.content{min-height:calc(100vh - 82px);display:grid;place-items:center;gap:18px;padding:42px 24px}.fish-button,.adblock-button{border:0;border-radius:18px;padding:18px 30px;font:inherit;font-size:1.25rem;font-weight:800;color:white;background:var(--blue-dark);box-shadow:0 8px 18px rgba(37,134,202,.28);cursor:pointer}.fish-button:hover,.adblock-button:hover{transform:translateY(-2px)}.adblock-button{background:#d94a3a}
+.overlay{position:fixed;inset:0;display:none;place-items:center;background:rgba(80,80,80,.35);z-index:10}.overlay.show{display:grid}.panel{width:min(90vw,430px);padding:28px;border-radius:24px;background:#f2f2f2;box-shadow:0 15px 45px rgba(0,0,0,.3);text-align:center}.panel h2{margin-top:0}.sound-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0}.toggle{padding:10px 18px;border:0;border-radius:999px;background:#72c77a;color:white;font-weight:800;cursor:pointer}.exit{margin:14px 0 0;background:#ddd;color:#333}
+.game{display:none;position:fixed;inset:0;background:linear-gradient(#8bdcff,#2699d7);z-index:5}.game.show{display:block}.waves{position:absolute;inset:auto 0 0;height:34%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 12px,transparent 12px 28px);opacity:.8}.player,.shark{position:absolute;font-size:clamp(45px,9vw,78px);user-select:none;touch-action:none}.player{left:15%;top:45%}.shark{font-size:clamp(48px,10vw,82px)}.hud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;z-index:2}.hud button{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.choice{display:none;position:fixed;inset:0;z-index:8;background:rgba(20,100,150,.9);color:white;place-items:center}.choice.show{display:grid}.choices{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}.fish-choice{font-size:60px;border:0;border-radius:18px;background:white;padding:14px;cursor:pointer}.gameover{display:none;position:absolute;inset:0;z-index:4;place-items:center;background:rgba(0,40,70,.72);color:white;text-align:center}.gameover.show{display:grid}.gameover button{border:0;border-radius:12px;padding:12px 18px;margin:5px;font-weight:800;cursor:pointer}
+.adgame{display:none;position:fixed;inset:0;z-index:7;overflow:hidden;background:linear-gradient(#8fdcff 0 58%,#73c94d 58% 100%);transition:background .7s}.adgame.show{display:block}.cloud{position:absolute;font-size:clamp(45px,9vw,90px);opacity:.9}.cloud.one{left:8%;top:13%}.cloud.two{right:12%;top:28%}.grass{position:absolute;bottom:0;left:0;right:0;height:16%;background:repeating-linear-gradient(105deg,transparent 0 12px,#54a83b 12px 15px)}.build-area{position:absolute;left:0;right:0;bottom:12%;height:70%;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}.stack{display:flex;flex-direction:column-reverse;align-items:center;min-height:20px}.block{width:76px;height:76px;margin:-2px 0;border-radius:12px;border:4px solid rgba(80,0,0,.25);display:grid;place-items:center;font-size:35px;font-weight:900;color:#202020;box-shadow:inset 0 -7px rgba(0,0,0,.12),0 5px 9px rgba(0,0,0,.2);cursor:pointer;pointer-events:auto;user-select:none}.block.red{background:#e94b43}.block.orange{background:#f28c28}.block.green{background:#5fc34a}.block.cube{width:86px;height:86px;border-radius:8px}.ad-hud{position:absolute;top:14px;left:14px;right:14px;display:flex;align-items:center;gap:10px;z-index:3}.ad-hud .title{font-size:1.35rem;font-weight:900}.ad-hud button,.build-btn{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.ad-hud button{margin-left:auto}.build-btn{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:4;background:#e94b43;color:white;font-size:1.05rem}.height{position:absolute;top:58px;left:16px;z-index:3;font-weight:800}.merge-help{position:absolute;bottom:20px;right:18px;font-size:.9rem;font-weight:700;z-index:3;background:rgba(255,255,255,.72);padding:8px 12px;border-radius:12px}
 </style>
 </head>
 <body>
 <header class="topbar"><h1 class="brand">gry czarka</h1><button class="optional" id="optionsBtn">opcje</button></header>
-<main class="content"><button class="fish-button" id="fishBtn">🐟 gra w rybę</button></main>
+<main class="content">
+ <button class="fish-button" id="fishBtn">🐟 gra w rybę</button>
+ <button class="adblock-button" id="adBtn">🟥 Adblock</button>
+</main>
 
-<section class="overlay" id="options">
- <div class="panel"><h2>opcje</h2><div class="sound-row"><span>🔊 dźwięk</span><button class="toggle" id="soundBtn">włączony</button></div><button class="exit" id="optionsExit">wyjdź</button></div>
-</section>
+<section class="overlay" id="options"><div class="panel"><h2>opcje</h2><div class="sound-row"><span>🔊 dźwięk</span><button class="toggle" id="soundBtn">włączony</button></div><button class="exit" id="optionsExit">wyjdź</button></div></section>
 
-<section class="choice" id="choice"><div><h2>Wybierz rybę 🐟</h2><div class="choices"><button class="fish-choice" data-fish="🐟">🐟</button><button class="fish-choice" data-fish="🐠">🐠</button><button class="fish-choice" data-fish="🐡">🐡</button><button class="fish-choice" data-fish="🦈">🐬</button></div></div></section>
+<section class="choice" id="choice"><div><h2>Wybierz rybę 🐟</h2><div class="choices"><button class="fish-choice" data-fish="🐟">🐟</button><button class="fish-choice" data-fish="🐠">🐠</button><button class="fish-choice" data-fish="🐡">🐡</button><button class="fish-choice" data-fish="🐬">🐬</button></div></div></section>
+<section class="game" id="game"><div class="hud"><span>🐟 Steruj rybą</span><button id="gameExit">wyjdź</button></div><div class="player" id="player">🐟</div><div class="shark" id="shark1">🦈</div><div class="shark" id="shark2">🦈</div><div class="waves"></div><div class="gameover" id="gameover"><div><h2>💥 GAME OVER</h2><p>Rekin cię dopadł!</p><button id="resume">wznów</button><button id="gameoverExit">wyjdź</button></div></div></section>
 
-<section class="game" id="game">
- <div class="hud"><span>🐟 Steruj rybą</span><button id="gameExit">wyjdź</button></div>
- <div class="player" id="player">🐟</div><div class="shark" id="shark1">🦈</div><div class="shark" id="shark2">🦈</div><div class="waves"></div>
- <div class="gameover" id="gameover"><div><h2>💥 GAME OVER</h2><p>Rekin cię dopadł!</p><button id="resume">wznów</button><button id="gameoverExit">wyjdź</button></div></div>
+<section class="adgame" id="adgame">
+ <div class="cloud one">☁️</div><div class="cloud two">☁️</div><div class="grass"></div>
+ <div class="ad-hud"><span class="title">🧱 Adblock</span><button id="adExit">wyjdź</button></div>
+ <div class="height" id="height">Wysokość: 1</div>
+ <div class="build-area"><div class="stack" id="stack"></div></div>
+ <button class="build-btn" id="buildBtn">dodaj czerwony klocek</button>
+ <div class="merge-help">Połącz dwa klocki tego samego poziomu, klikając górny.</div>
 </section>
 
 <script>
-const options=document.getElementById('options'), choice=document.getElementById('choice'), game=document.getElementById('game'), player=document.getElementById('player'), sharks=[document.getElementById('shark1'),document.getElementById('shark2')], gameover=document.getElementById('gameover');
+const options=document.getElementById('options'),choice=document.getElementById('choice'),game=document.getElementById('game'),player=document.getElementById('player'),sharks=[document.getElementById('shark1'),document.getElementById('shark2')],gameover=document.getElementById('gameover');
+const adgame=document.getElementById('adgame'),stack=document.getElementById('stack'),heightLabel=document.getElementById('height');
 let sound=true,x=.15,y=.45,fish='🐟',running=false,raf,last=0;
 function flash(cls){document.body.classList.remove(cls);void document.body.offsetWidth;document.body.classList.add(cls)}
 document.getElementById('optionsBtn').onclick=()=>{flash('grayFlash');options.classList.add('show')};
@@ -43,14 +51,45 @@ document.getElementById('fishBtn').onclick=()=>choice.classList.add('show');
 document.querySelectorAll('.fish-choice').forEach(b=>b.onclick=()=>{fish=b.dataset.fish;player.textContent=fish;choice.classList.remove('show');startGame()});
 function startGame(){flash('blueFlash');game.classList.add('show');gameover.classList.remove('show');x=.15;y=.45;running=true;last=performance.now();sharks.forEach((s,i)=>{s.style.left=(65+i*20)+'%';s.style.top=(20+i*45)+'%'});cancelAnimationFrame(raf);raf=requestAnimationFrame(loop)}
 function endGame(){running=false;gameover.classList.add('show')}
-function loop(t){if(!running)return;let dt=(t-last)/1000;last=t;sharks.forEach((s,i)=>{let p=parseFloat(s.style.left)||70;let speed=(i?10:14)*dt;p-=speed;if(p<-12)p=105;s.style.left=p+'%';let sy=parseFloat(s.style.top)||30;let dx=p/100-x,dy=sy/100-y;if(Math.hypot(dx,dy)<.09)endGame()});player.style.left=(x*100)+'%';player.style.top=(y*100)+'%';raf=requestAnimationFrame(loop)}
+function loop(t){if(!running)return;let dt=(t-last)/1000;last=t;sharks.forEach((s,i)=>{let p=parseFloat(s.style.left)||70;p-=(i?10:14)*dt;if(p<-12)p=105;s.style.left=p+'%';let sy=parseFloat(s.style.top)||30;if(Math.hypot(p/100-x,sy/100-y)<.09)endGame()});player.style.left=x*100+'%';player.style.top=y*100+'%';raf=requestAnimationFrame(loop)}
 const keys={};addEventListener('keydown',e=>{keys[e.key]=true;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault()});addEventListener('keyup',e=>keys[e.key]=false);
 setInterval(()=>{if(!running)return;const step=.035;if(keys.ArrowUp)y-=step;if(keys.ArrowDown)y+=step;if(keys.ArrowLeft)x-=step;if(keys.ArrowRight)x+=step;x=Math.max(.02,Math.min(.94,x));y=Math.max(.12,Math.min(.88,y))},30);
-game.addEventListener('pointerdown',e=>{if(!running)return;moveTo(e.clientX,e.clientY)});game.addEventListener('pointermove',e=>{if(e.buttons&&running)moveTo(e.clientX,e.clientY)});
+game.addEventListener('pointerdown',e=>{if(running)moveTo(e.clientX,e.clientY)});game.addEventListener('pointermove',e=>{if(e.buttons&&running)moveTo(e.clientX,e.clientY)});
 function moveTo(px,py){x=Math.max(.02,Math.min(.94,px/innerWidth));y=Math.max(.12,Math.min(.88,py/innerHeight))}
 document.getElementById('gameExit').onclick=()=>{running=false;game.classList.remove('show');gameover.classList.remove('show')};
 document.getElementById('gameoverExit').onclick=()=>{game.classList.remove('show');gameover.classList.remove('show')};
-document.getElementById('resume').onclick=()=>startGame();
+document.getElementById('resume').onclick=startGame;
+
+let blocks=[];
+function openAdblock(){adgame.classList.add('show');if(!blocks.length)addBlock(1)}
+document.getElementById('adBtn').onclick=openAdblock;
+document.getElementById('adExit').onclick=()=>adgame.classList.remove('show');
+document.getElementById('buildBtn').onclick=()=>addBlock(1);
+function addBlock(value){
+ const b=document.createElement('div');b.className='block '+blockClass(value);b.dataset.value=value;b.textContent=blockFace(value);b.title='klocek '+value;
+ b.onclick=e=>{e.stopPropagation();mergeBlock(b)};stack.appendChild(b);blocks.push(b);refreshAdblock();
+}
+function blockClass(v){if(v>=8)return 'green cube';if(v>=4)return 'green';if(v>=2)return 'orange';return 'red'}
+function blockFace(v){if(v===1)return '👁️';if(v===2)return '😎';if(v>=4)return '▫️▫️';return '👁️'}
+function mergeBlock(b){
+ const value=Number(b.dataset.value);
+ const siblings=[...stack.children].filter(x=>Number(x.dataset.value)===value);
+ if(siblings.length<2){return}
+ const a=siblings[0],c=siblings[1];a.remove();c.remove();blocks=blocks.filter(x=>x!==a&&x!==c);
+ addBlock(value*2);
+ refreshAdblock();
+}
+function refreshAdblock(){
+ const total=[...stack.children].reduce((s,b)=>s+Number(b.dataset.value),0);
+ heightLabel.textContent='Wysokość: '+total;
+ if(total<4){adgame.style.background='linear-gradient(#8fdcff 0 58%,#73c94d 58% 100%)'}
+ else if(total<8){adgame.style.background='linear-gradient(#7bd8ff 0 48%,#67bf49 48% 100%)'}
+ else if(total<16){adgame.style.background='linear-gradient(#a8dfff 0 38%,#5aaa4a 38% 100%)'}
+ else if(total<32){adgame.style.background='linear-gradient(#7b9bd8 0 25%,#456a9e 25% 65%,#4f7b42 65% 100%)'}
+ else if(total<64){adgame.style.background='linear-gradient(#25385e 0 35%,#19243e 35% 100%)'}
+ else {adgame.style.background='linear-gradient(#020817 0 100%)'}
+ if(total>=16){document.querySelectorAll('.cloud').forEach(c=>c.style.opacity=0)}
+}
 </script>
 </body>
 </html>
