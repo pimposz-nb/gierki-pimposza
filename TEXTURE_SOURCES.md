@@ -1,15 +1,31 @@
-# Źródła realistycznych tekstur
+# Źródła realistycznych tekstur i grafik
 
-Tekstury użyte w grach są pobierane bezpośrednio z bibliotek zewnętrznych.
+W grach używamy zewnętrznych materiałów z bibliotek, przede wszystkim CC0.
 
-## Poly Haven — CC0
-- Forest Ground 01: https://polyhaven.com/a/forrest_ground_01
-- Rock 01: https://polyhaven.com/a/rock_01
-- Plywood: https://polyhaven.com/a/plywood
+## Woda
+- OpenGameArt — Seamless water tiles / ocean water: https://opengameart.org/content/seamless-water-tiles
+- OpenGameArt — Water Pack 1: https://opengameart.org/content/water-pack-1
 
-Poly Haven udostępnia swoje materiały na licencji CC0.
+## Ziemia i trawa
+- Poly Haven — Dirt: https://polyhaven.com/a/dirt
+- Poly Haven — Sparse Grass: https://polyhaven.com/a/sparse_grass
 
-## OpenGameArt — CC0
-- Photorealistic Texture Pack 1 / Photoreal Grass: https://opengameart.org/content/photorealistic-texture-pack-1-photorealgrass03-512x512png-0
+## Niebo i chmury
+- Poly Haven — Cloud Layers: https://polyhaven.com/a/cloud_layers
+- OpenGameArt — clouds, trzy osobne rysunki chmur: https://opengameart.org/content/clouds-4
 
-Ta konkretna tekstura jest oznaczona jako CC0.
+## Zwierzęce postacie
+- OpenGameArt — 2D Vector Assets: https://opengameart.org/content/2d-vector-assets
+  - zawiera m.in. postać dinozaura, chmury i tło nieba.
+- OpenGameArt — Animal Sprites: https://opengameart.org/content/animal-sprites
+  - pies, świnia i szczur; CC0.
+
+## Papier
+- OpenGameArt — CC0 PBR Paper Textures: https://opengameart.org/content/cc0-pbr-paper-textures-paperroughpng
+- OpenGameArt — Paper-Textures (seamless): https://opengameart.org/content/paper-textures-seamless
+
+## Piłka
+- OpenGameArt — Soccer Ball Animation Sprites and 3D Texture: https://opengameart.org/content/soccer-ball-animation-sprites-and-3d-texture
+
+## Licencje
+Poly Haven udostępnia swoje zasoby na CC0. OpenGameArt ma różne licencje, dlatego przy każdym używanym zasobie sprawdzamy oznaczenie licencji na stronie źródłowej.
