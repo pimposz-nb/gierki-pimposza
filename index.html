@@ -72,6 +72,13 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 .robot-world .cute-robot.dance{animation:robotDance .35s infinite alternate}
 @keyframes robotDance{to{transform:rotate(8deg) translateY(-8px)}}
 .number-one-character.jump{transform:translateY(-34px) rotate(-4deg)}
+
+/* Naprawione przewijanie planszy Numberblocka 1 */
+#numberOneGame{position:fixed;inset:0;height:100vh;height:100dvh;min-height:0!important;overflow-x:hidden;overflow-y:scroll!important;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;scrollbar-gutter:stable}
+#numberOneGame.show{display:block}
+#numberOneGame .number-one-exit{position:fixed!important;top:18px;left:18px}
+#numberOneGame .number-one-character,#numberOneGame h2,#numberOneGame p,#numberOneGame .number-minus-one{position:relative}
+#numberOneGame .number-minus-one{margin-top:650px}
 </style>
 </head>
 <body>
@@ -192,7 +199,7 @@ document.getElementById('fishBtn').onclick=()=>{waterSwish();choice.classList.ad
 document.getElementById('minecraftBtn').onclick=()=>alert('Wybierz Number Blocks Minecraft z menu gier!');
 document.getElementById('msmBtn').onclick=()=>alert('My Singing Monsters — gra będzie dodana tutaj.');
 const numberOneGame=document.getElementById('numberOneGame'),numberOneCharacter=document.getElementById('numberOneCharacter');
-document.getElementById('numberOneBtn').onclick=()=>numberOneGame.classList.add('show');
+document.getElementById('numberOneBtn').onclick=()=>{numberOneGame.scrollTop=0;numberOneGame.classList.add('show')};
 document.getElementById('numberOneExit').onclick=()=>numberOneGame.classList.remove('show');
 function numberOneJump(){numberOneCharacter.classList.add('jump');setTimeout(()=>numberOneCharacter.classList.remove('jump'),260);if(sound)mcmTone(660,.12,'triangle',.06)}
 numberOneCharacter.onclick=numberOneJump;
