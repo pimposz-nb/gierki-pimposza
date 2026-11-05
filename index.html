@@ -25,6 +25,13 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 .number-one-character strong{position:absolute;inset:0;display:grid;place-items:center;font-size:76px;color:#fff;text-shadow:2px 3px #a71919;pointer-events:none}
 .number-one-eye{width:25px;height:31px;border-radius:50%;background:#fff;border:2px solid #333;position:absolute;top:28px;left:53px;z-index:1}
 .number-one-smile{position:absolute;top:70px;left:55px;width:27px;height:14px;border-bottom:4px solid #4a1010;border-radius:50%;z-index:1}
+.number-minus-one{width:142px;height:142px;position:relative;display:block;background:linear-gradient(135deg,#a8ffff,#00b8c7);border:5px solid #087d8b;border-radius:12px;box-shadow:inset -9px -10px #087d8b,0 12px 0 #075d69,0 0 24px #54f5ff88;cursor:pointer;transition:transform .18s}
+.number-minus-one strong{position:absolute;inset:0;display:grid;place-items:center;font-size:68px;color:#fff;text-shadow:2px 3px #087d8b;pointer-events:none}
+.number-minus-one-face{position:absolute;inset:0;transform:rotate(180deg);pointer-events:none}
+.number-minus-one .number-one-eye{top:28px;left:53px}
+.number-minus-one .number-one-smile{top:70px;left:55px;border-color:#064d58}
+.number-minus-one.jump{transform:translateY(-30px) rotate(4deg)}
+.number-minus-one-label{margin:0;font-weight:800;color:#075d69}
 .minecraft-world,.robot-world{display:none;position:fixed;inset:0;z-index:14;text-align:center;color:#26364a;padding:64px 16px 24px;overflow:auto}
 .minecraft-world.show,.robot-world.show{display:block}
 .minecraft-world{background:linear-gradient(#8bd7ff 0 62%,#67b84e 62% 100%)}
@@ -73,10 +80,15 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 <section class="number-one-game" id="numberOneGame" aria-label="Numberblock jeden">
   <button class="number-one-exit" id="numberOneExit">← wróć</button>
   <div class="number-one-character" id="numberOneCharacter" role="button" tabindex="0" aria-label="Numberblock jeden">
-    <span class="number-one-eye"></span><span class="number-one-eye"></span><span class="number-one-smile"></span><strong>1</strong>
+    <span class="number-one-eye"></span><span class="number-one-smile"></span><strong>1</strong>
   </div>
   <h2>To Numberblock Jeden!</h2>
   <p>Kliknij go, a podskoczy.</p>
+  <div class="number-minus-one" id="numberMinusOne" role="button" tabindex="0" aria-label="Tajemniczy Numberblock minus jeden">
+    <div class="number-minus-one-face"><span class="number-one-eye"></span><span class="number-one-smile"></span></div>
+    <strong>−1</strong>
+  </div>
+  <p class="number-minus-one-label">Tajemniczy Numberblock Minus Jeden…</p>
 </section>
 
 <section class="minecraft-world" id="minecraftWorld">
@@ -173,6 +185,10 @@ document.getElementById('numberOneExit').onclick=()=>numberOneGame.classList.rem
 function numberOneJump(){numberOneCharacter.classList.add('jump');setTimeout(()=>numberOneCharacter.classList.remove('jump'),260);if(sound)mcmTone(660,.12,'triangle',.06)}
 numberOneCharacter.onclick=numberOneJump;
 numberOneCharacter.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();numberOneJump()}};
+const numberMinusOne=document.getElementById('numberMinusOne');
+function numberMinusOneJump(){numberMinusOne.classList.add('jump');setTimeout(()=>numberMinusOne.classList.remove('jump'),260);if(sound)mcmTone(330,.2,'sawtooth',.045)}
+numberMinusOne.onclick=numberMinusOneJump;
+numberMinusOne.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();numberMinusOneJump()}};
 const minecraftWorld=document.getElementById('minecraftWorld'),minecraftBoard=document.getElementById('minecraftBoard');
 let selectedBlock='grass';
 for(let i=0;i<36;i++){const cell=document.createElement('button');cell.className='minecraft-cell';cell.setAttribute('aria-label','pole '+(i+1));cell.onclick=()=>{cell.className='minecraft-cell '+selectedBlock;document.getElementById('minecraftStatus').textContent='Postawiono klocek: '+({grass:'trawa',dirt:'ziemia',stone:'kamień',water:'woda'}[selectedBlock])+'!'};minecraftBoard.appendChild(cell)}
