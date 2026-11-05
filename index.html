@@ -21,10 +21,37 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 .number-one-button{border:0;border-radius:18px;padding:18px 30px;font:inherit;font-size:1.2rem;font-weight:900;color:#fff;background:#d93636;box-shadow:0 8px 18px #9d252544;cursor:pointer}
 .number-one-game{display:none;position:fixed;inset:0;z-index:13;background:linear-gradient(#bfeaff 0 72%,#79c957 72%);place-items:center;align-content:center;gap:12px;text-align:center;color:#24334a}
 .number-one-game.show{display:grid}.number-one-game p{margin:0}.number-one-exit{position:absolute;top:18px;left:18px;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer}
-.number-one-character{width:150px;height:190px;position:relative;display:flex;align-items:center;justify-content:center;gap:26px;flex-wrap:wrap;background:linear-gradient(135deg,#ff6969,#d71920);border:5px solid #a90f18;border-radius:22px 22px 18px 18px;box-shadow:inset -9px -10px #a80e18,0 12px 0 #8b2020;cursor:pointer;transition:transform .18s}
-.number-one-character strong{position:absolute;inset:0;display:grid;place-items:center;font-size:78px;color:#fff;text-shadow:2px 3px #a71919;pointer-events:none}
-.number-one-eye{width:18px;height:23px;border-radius:50%;background:#fff;border:2px solid #333;position:absolute;top:45px;z-index:1}.number-one-eye:nth-child(1){left:43px}.number-one-eye:nth-child(2){right:43px}
-.number-one-smile{position:absolute;top:83px;width:30px;height:14px;border-bottom:4px solid #4a1010;border-radius:50%;z-index:1}
+.number-one-character{width:142px;height:142px;position:relative;display:block;background:linear-gradient(135deg,#ff6969,#d71920);border:5px solid #a90f18;border-radius:12px;box-shadow:inset -9px -10px #a80e18,0 12px 0 #8b2020;cursor:pointer;transition:transform .18s}
+.number-one-character strong{position:absolute;inset:0;display:grid;place-items:center;font-size:76px;color:#fff;text-shadow:2px 3px #a71919;pointer-events:none}
+.number-one-eye{width:25px;height:31px;border-radius:50%;background:#fff;border:2px solid #333;position:absolute;top:28px;left:53px;z-index:1}
+.number-one-smile{position:absolute;top:70px;left:55px;width:27px;height:14px;border-bottom:4px solid #4a1010;border-radius:50%;z-index:1}
+.minecraft-world,.robot-world{display:none;position:fixed;inset:0;z-index:14;text-align:center;color:#26364a;padding:64px 16px 24px;overflow:auto}
+.minecraft-world.show,.robot-world.show{display:block}
+.minecraft-world{background:linear-gradient(#8bd7ff 0 62%,#67b84e 62% 100%)}
+.minecraft-exit,.robot-exit{position:fixed;top:16px;left:16px;border:0;border-radius:999px;padding:11px 17px;font-weight:900;cursor:pointer;z-index:2}
+.minecraft-board{display:grid;grid-template-columns:repeat(6, minmax(35px,58px));gap:4px;justify-content:center;margin:18px auto;max-width:390px}
+.minecraft-cell{aspect-ratio:1;border:2px solid #0002;border-radius:5px;background:#b9e4ff;cursor:pointer;box-shadow:inset 0 -5px #0001}
+.minecraft-cell.grass{background:linear-gradient(#63c34c 0 25%,#98613c 25%)}
+.minecraft-cell.dirt{background:#98613c}.minecraft-cell.stone{background:#92999e}.minecraft-cell.water{background:#39a9ed}
+.minecraft-tools{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.minecraft-tools button,.robot-controls button{border:0;border-radius:12px;padding:11px 15px;font-weight:900;cursor:pointer}
+.minecraft-status{font-weight:800;min-height:24px}
+.robot-world{background:linear-gradient(#b9e8ff 0 68%,#8cce72 68%);color:#24334a}
+.robot-stage{margin:24px auto 18px;width:220px;height:210px;display:grid;place-items:center}
+.cute-robot{width:125px;height:145px;position:relative;transition:transform .25s}
+.robot-head{width:110px;height:82px;margin:auto;background:linear-gradient(145deg,#f4f7fb,#aab9c9);border:5px solid #62758b;border-radius:24px;position:relative;box-shadow:inset -7px -7px #8799ac}
+.robot-eye{position:absolute;top:24px;width:13px;height:17px;background:#277bd4;border-radius:50%;box-shadow:0 0 8px #5ccaff}.robot-eye.left{left:25px}.robot-eye.right{right:25px}
+.robot-mouth{position:absolute;left:42px;bottom:13px;width:20px;height:7px;border-radius:8px;background:#536579}
+.robot-antenna{position:absolute;left:53px;top:-22px;width:5px;height:20px;background:#62758b}.robot-antenna:after{content:'';position:absolute;top:-8px;left:-5px;width:14px;height:14px;border-radius:50%;background:#ffca4b;border:2px solid #62758b}
+.robot-body{width:78px;height:54px;margin:5px auto;background:linear-gradient(145deg,#8fd5f4,#4b9bc8);border:4px solid #62758b;border-radius:15px;position:relative}
+.robot-body:after{content:'♥';position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:24px}
+.robot-arm{position:absolute;top:90px;width:16px;height:48px;border-radius:12px;background:#91a7bc;border:3px solid #62758b;transform-origin:top;transition:transform .2s}
+.robot-arm.left{left:2px}.robot-arm.right{right:2px}
+.robot-leg{position:absolute;bottom:0;width:20px;height:28px;border-radius:8px;background:#657b91}.robot-leg.left{left:37px}.robot-leg.right{right:37px}
+.robot-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.robot-message{font-weight:900;min-height:28px}
+.robot-world .cute-robot.wave .robot-arm.right{transform:rotate(-125deg)}
+.robot-world .cute-robot.walk{transform:translateX(35px) rotate(4deg)}
+.robot-world .cute-robot.dance{animation:robotDance .35s infinite alternate}
+@keyframes robotDance{to{transform:rotate(8deg) translateY(-8px)}}
 .number-one-character.jump{transform:translateY(-34px) rotate(-4deg)}
 </style>
 </head>
@@ -36,6 +63,8 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
     <button class="fish-button" id="minecraftBtn">graj Minecraft</button>
     <button class="fish-button" id="msmBtn">graj My Singing Monsters</button>
     <button class="number-one-button" id="numberOneBtn">🔴 Numberblock 1</button>
+    <button class="mcm-button" id="minecraftBlocksBtn">🧱 Number Blocks Minecraft</button>
+    <button class="fish-button" id="robotSimulatorBtn">🤖 Słodki Robocik Simulator</button>
   </div>
 </main>
 
@@ -48,6 +77,28 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
   </div>
   <h2>To Numberblock Jeden!</h2>
   <p>Kliknij go, a podskoczy.</p>
+</section>
+
+<section class="minecraft-world" id="minecraftWorld">
+  <button class="minecraft-exit" id="minecraftExit">← wróć</button>
+  <h2>🧱 Number Blocks Minecraft</h2>
+  <p>Wybierz klocek, a potem kliknij pole, żeby budować swój świat!</p>
+  <div class="minecraft-tools">
+    <button data-block="grass">🌱 Trawa</button><button data-block="dirt">🟫 Ziemia</button><button data-block="stone">🪨 Kamień</button><button data-block="water">💧 Woda</button>
+  </div>
+  <div class="minecraft-board" id="minecraftBoard"></div>
+  <p class="minecraft-status" id="minecraftStatus">Wybrano trawę. Zbuduj coś!</p>
+</section>
+
+<section class="robot-world" id="robotWorld">
+  <button class="robot-exit" id="robotExit">← wróć</button>
+  <h2>🤖 Słodki Robocik Simulator</h2>
+  <div class="robot-stage"><div class="cute-robot" id="cuteRobot">
+    <div class="robot-antenna"></div><div class="robot-head"><i class="robot-eye left"></i><i class="robot-eye right"></i><i class="robot-mouth"></i></div>
+    <div class="robot-arm left"></div><div class="robot-arm right"></div><div class="robot-body"></div><div class="robot-leg left"></div><div class="robot-leg right"></div>
+  </div></div>
+  <p class="robot-message" id="robotMessage">Cześć! Jestem robocik. Co robimy?</p>
+  <div class="robot-controls"><button id="robotWave">👋 Pomachaj</button><button id="robotWalk">🚶 Spacer</button><button id="robotDance">💃 Taniec</button><button id="robotBeep">🔔 Pik!</button><button id="robotCharge">🔋 Naładuj</button></div>
 </section>
 
 <section class="choice" id="choice"><div><h2>Wybierz rybę 🐟</h2><div class="choices"></div></div></section>
@@ -114,7 +165,7 @@ document.getElementById('optionsBtn').onclick=()=>{flash('grayFlash');options.cl
 document.getElementById('optionsExit').onclick=()=>options.classList.remove('show');
 document.getElementById('soundBtn').onclick=e=>{sound=!sound;e.target.textContent=sound?'włączony':'wyłączony'};
 document.getElementById('fishBtn').onclick=()=>{waterSwish();choice.classList.add('show')};
-document.getElementById('minecraftBtn').onclick=()=>alert('Minecraft — gra będzie dodana tutaj.');
+document.getElementById('minecraftBtn').onclick=()=>alert('Wybierz Number Blocks Minecraft z menu gier!');
 document.getElementById('msmBtn').onclick=()=>alert('My Singing Monsters — gra będzie dodana tutaj.');
 const numberOneGame=document.getElementById('numberOneGame'),numberOneCharacter=document.getElementById('numberOneCharacter');
 document.getElementById('numberOneBtn').onclick=()=>numberOneGame.classList.add('show');
@@ -122,6 +173,22 @@ document.getElementById('numberOneExit').onclick=()=>numberOneGame.classList.rem
 function numberOneJump(){numberOneCharacter.classList.add('jump');setTimeout(()=>numberOneCharacter.classList.remove('jump'),260);if(sound)mcmTone(660,.12,'triangle',.06)}
 numberOneCharacter.onclick=numberOneJump;
 numberOneCharacter.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();numberOneJump()}};
+const minecraftWorld=document.getElementById('minecraftWorld'),minecraftBoard=document.getElementById('minecraftBoard');
+let selectedBlock='grass';
+for(let i=0;i<36;i++){const cell=document.createElement('button');cell.className='minecraft-cell';cell.setAttribute('aria-label','pole '+(i+1));cell.onclick=()=>{cell.className='minecraft-cell '+selectedBlock;document.getElementById('minecraftStatus').textContent='Postawiono klocek: '+({grass:'trawa',dirt:'ziemia',stone:'kamień',water:'woda'}[selectedBlock])+'!'};minecraftBoard.appendChild(cell)}
+document.querySelectorAll('.minecraft-tools button').forEach(b=>b.onclick=()=>{selectedBlock=b.dataset.block;document.getElementById('minecraftStatus').textContent='Wybrano: '+b.textContent});
+document.getElementById('minecraftBlocksBtn').onclick=()=>minecraftWorld.classList.add('show');
+document.getElementById('minecraftExit').onclick=()=>minecraftWorld.classList.remove('show');
+const robotWorld=document.getElementById('robotWorld'),cuteRobot=document.getElementById('cuteRobot'),robotMessage=document.getElementById('robotMessage');
+function robotAction(action,message){cuteRobot.classList.remove('wave','walk','dance');void cuteRobot.offsetWidth;if(action)cuteRobot.classList.add(action);robotMessage.textContent=message}
+document.getElementById('robotSimulatorBtn').onclick=()=>robotWorld.classList.add('show');
+document.getElementById('robotExit').onclick=()=>{robotWorld.classList.remove('show');robotAction('','Cześć! Jestem robocik. Co robimy?')};
+document.getElementById('robotWave').onclick=()=>robotAction('wave','Robocik macha do Ciebie! 👋');
+document.getElementById('robotWalk').onclick=()=>robotAction('walk','Robocik zrobił kilka kroków! 🚶');
+document.getElementById('robotDance').onclick=()=>robotAction('dance','Robocik tańczy! 🎵');
+document.getElementById('robotBeep').onclick=()=>{robotAction('','PI-PIK! 🤖');if(sound)mcmTone(740,.13,'square',.045)};
+document.getElementById('robotCharge').onclick=()=>robotAction('','Bateria pełna! 🔋✨');
+
 
 const fishArt={blue:'https://raw.githubusercontent.com/ETdoFresh/kenney.nl/master/kenney_fishpack/PNG/fish_blue.png',orange:'https://raw.githubusercontent.com/ETdoFresh/kenney.nl/master/kenney_fishpack/PNG/fish_orange.png',green:'https://raw.githubusercontent.com/ETdoFresh/kenney.nl/master/kenney_fishpack/PNG/fish_green.png',pink:'https://raw.githubusercontent.com/ETdoFresh/kenney.nl/master/kenney_fishpack/PNG/fish_pink.png'};
 document.querySelectorAll('.fish-choice').forEach(b=>b.onclick=()=>{fish=b.dataset.fish;player.innerHTML='<img class="player-art" src="'+fishArt[fish]+'" alt="wybrana ryba">';choice.classList.remove('show');fishBubble();startGame()});
@@ -246,7 +313,7 @@ function goMainMenu(){
   running=false;
   if(typeof raf!=='undefined') cancelAnimationFrame(raf);
   if(typeof stopFishSounds==='function') stopFishSounds();
-  document.querySelectorAll('section.choice,section.game,section.tttgame,section.mcmgame,section.adgame,section.randomgame,section.number-one-game,section.overlay').forEach(el=>el.classList.remove('show'));
+  document.querySelectorAll('section.choice,section.game,section.tttgame,section.mcmgame,section.adgame,section.randomgame,section.number-one-game,section.minecraft-world,section.robot-world,section.overlay').forEach(el=>el.classList.remove('show'));
   document.body.classList.remove('in-game');
   if(typeof resetMcmTutorial==='function') resetMcmTutorial();
 }
