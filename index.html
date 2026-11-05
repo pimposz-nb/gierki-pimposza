@@ -21,7 +21,12 @@ body.flash-blue{animation:blueFlash .55s ease}@keyframes blueFlash{50%{backgroun
 .number-one-button{border:0;border-radius:18px;padding:18px 30px;font:inherit;font-size:1.2rem;font-weight:900;color:#fff;background:#d93636;box-shadow:0 8px 18px #9d252544;cursor:pointer}
 .number-one-game{display:none;position:fixed;inset:0;z-index:13;overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(to bottom,#bfeaff 0 285px,#79c957 285px 355px,#95603d 355px 650px,#382116 650px 100%);text-align:center;color:#24334a;padding:0 16px 100px}
 .number-one-game.show{display:block}.number-one-game p{margin:8px 0}.number-one-game h2{margin:18px 0 8px}.number-one-exit{position:fixed;top:18px;left:18px;border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;z-index:3}
-.number-one-character{margin:105px auto 0;box-shadow:inset -9px -10px #a80e18,0 12px 0 #8b2020}
+.number-one-character{margin:133px auto 0;box-shadow:inset -9px -10px #a80e18,0 12px 0 #8b2020}
+.number-one-exit{position:fixed!important}
+.number-one-game{min-height:1500px}
+.number-one-game:after{content:"";position:absolute;top:355px;left:0;right:0;height:1145px;pointer-events:none;background:linear-gradient(to bottom,#95603d 0 295px,#382116 295px 100%);z-index:0}
+.number-one-game>*{z-index:1}
+.number-minus-one{margin:700px auto 0;position:relative;z-index:2}
 .number-one-game:before{content:"";position:absolute;top:355px;left:0;right:0;height:295px;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 58px,#75472f55 59px 62px),radial-gradient(ellipse at 15% 40%,#5b382c 0 5px,transparent 6px),radial-gradient(ellipse at 78% 75%,#c08a5a 0 7px,transparent 8px);opacity:.8}
 .number-one-game>*{position:relative}
 .number-minus-one{margin:650px auto 0;box-shadow:inset -9px -10px #087d8b,0 12px 0 #075d69,0 0 24px #54f5ff88}
